@@ -1,0 +1,20 @@
+{
+    "name" : "cnam/gitlab-api-service-provider",
+    "description" : "Sdk for integration gitlab api",
+    "minimum-stability": "beta",
+    "authors": [
+        {
+            "name": "Anton Popov",
+            "email": "cnam812@gmail.com"
+        }
+    ],
+    "autoload": {
+        "psr-4" : {
+            "Silex\\Provider\\" : "src/Silex/Provider/"
+        }
+    },
+    "require": {
+        "pimple/pimple": "3.0.*",
+        "cnam/gitlab-api": "0.0.*"
+    }
+}
