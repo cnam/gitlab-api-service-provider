@@ -15,6 +15,6 @@
     },
     "require": {
         "pimple/pimple": "3.0.*",
-        "cnam/gitlab-api": "0.0.*"
+        "cnam/gitlab-api": "0.1.*"
     }
 }
