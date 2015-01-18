@@ -21,11 +21,13 @@ class GitlabApiSilexProvider implements ServiceProviderInterface
         $app['gitlab_api'] = function ($app) {
 
             $token = $app['security']->getToken();
+            $private_token = $app['gitlab_api.options']['request_options']['private_token'];
+
             if (null !== $token) {
                 $user = $token->getUser();
-                $private_token = $user->getToken();
-            } else {
-                $private_token = $app['gitlab_api.options']['request_options']['private_token'];
+                if (method_exists($user, 'getToken')) {
+                    $private_token = $user->getToken();
+                }
             }
 
             return new Api(array(
