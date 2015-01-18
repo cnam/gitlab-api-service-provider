@@ -29,14 +29,16 @@ class GitlabApiSilexProvider implements ServiceProviderInterface
             }
 
             return new Api(array(
-                    "base_url" => $app['gitlab_api.base_url'],
+                    "base_url" => $app['gitlab_api']['base_url'],
                     'request.options' => array(
                         "verify" => false,
-                        "auth" => $app['gitlab_api.request_options']['auth'],
+                        "auth" => $app['gitlab_api']['request_options']['auth'],
                         "query" => array(
                             'private_token' => $private_token
                         )
-                    ))
+                    ),
+                    'oauth2' => !empty($app['gitlab_api']['oauth2']) ? $app['gitlab_api']['oauth2'] : [],
+                )
             );
         };
     }
