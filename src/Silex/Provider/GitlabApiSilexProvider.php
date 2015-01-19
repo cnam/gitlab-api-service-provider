@@ -25,8 +25,8 @@ class GitlabApiSilexProvider implements ServiceProviderInterface
 
             if (null !== $token) {
                 $user = $token->getUser();
-                if (method_exists($user, 'getToken')) {
-                    $private_token = $user->getToken();
+                if (method_exists($user, 'getCredential')) {
+                    $tokens = $user->getCredential('gitlab');
                 }
             }
 
@@ -36,7 +36,7 @@ class GitlabApiSilexProvider implements ServiceProviderInterface
                         "verify" => false,
                         "auth" => $app['gitlab_api.options']['request_options']['auth'],
                         "query" => array(
-                            'private_token' => $private_token
+                            'private_token' =>  isset($tokens['private_access_token']) ? $tokens['private_access_token'] : $private_token
                         )
                     ),
                     'oauth2' => !empty($app['gitlab_api.options']['oauth2']) ? $app['gitlab_api.options']['oauth2'] : [],
