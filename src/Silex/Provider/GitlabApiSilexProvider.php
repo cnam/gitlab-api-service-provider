@@ -31,7 +31,7 @@ class GitlabApiSilexProvider implements ServiceProviderInterface
             }
 
             return new Api(array(
-                    "base_url" => $app['gitlab_api.options']['base_url'],
+                    "base_url" => $app['gitlab_api.options']['base_url'].$app['gitlab_api.options']['base_path'],
                     'request.options' => array(
                         "verify" => false,
                         "auth" => $app['gitlab_api.options']['request_options']['auth'],
