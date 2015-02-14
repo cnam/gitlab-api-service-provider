@@ -35,11 +35,9 @@ class GitlabApiSilexProvider implements ServiceProviderInterface
                     'request.options' => array(
                         "verify" => false,
                         "auth" => $app['gitlab_api.options']['request_options']['auth'],
-                        "query" => array(
-                            'private_token' =>  isset($tokens['private_access_token']) ? $tokens['private_access_token'] : $private_token
-                        )
                     ),
                     'oauth2' => !empty($app['gitlab_api.options']['oauth2']) ? $app['gitlab_api.options']['oauth2'] : [],
+                    'private_token' =>  isset($tokens['private_access_token']) ? $tokens['private_access_token'] : $private_token
                 )
             );
         };
